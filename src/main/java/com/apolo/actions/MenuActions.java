@@ -22,10 +22,10 @@ public class MenuActions {
     @ActionProxy(text="About")
     private void about() {
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Gluon Desktop");
-        alert.setHeaderText("About Gluon Desktop");
-        alert.setGraphic(new ImageView(new Image(MenuActions.class.getResource("/icon.png").toExternalForm(), 48, 48, true, true)));
-        alert.setContentText("This is a basic Gluon Desktop Application");
+        alert.setTitle("Apolo");
+        alert.setHeaderText("About Apolo");
+        alert.setGraphic(new ImageView(new Image(MenuActions.class.getResource("/Sun.png").toExternalForm(), 48, 48, true, true)));
+        alert.setContentText("Designed by Sam.Chen & Eddie,Lu");
         alert.showAndWait();
     }
         

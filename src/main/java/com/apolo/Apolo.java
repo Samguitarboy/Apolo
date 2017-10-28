@@ -7,7 +7,7 @@ import static org.controlsfx.control.action.ActionMap.actions;
 public class Apolo extends ParticleApplication {
 
     public Apolo() {
-        super("Gluon Desktop Application");
+        super("Apolo");
     }
 
     @Override
