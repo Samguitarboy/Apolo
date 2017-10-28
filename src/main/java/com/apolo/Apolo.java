@@ -7,14 +7,14 @@ import static org.controlsfx.control.action.ActionMap.actions;
 public class Apolo extends ParticleApplication {
 
     public Apolo() {
-        super("Gluon Desktop Application");
+        super("Apolo");
     }
 
     @Override
     public void postInit(Scene scene) {
         scene.getStylesheets().add(Apolo.class.getResource("style.css").toExternalForm());
 
-        setTitle("Gluon Desktop Application");
+        setTitle("Apolo");
 
         getParticle().buildMenu("File -> [exit]", "Help -> [about]");
         
