@@ -14,7 +14,7 @@ public class Apolo extends ParticleApplication {
     public void postInit(Scene scene) {
         scene.getStylesheets().add(Apolo.class.getResource("style.css").toExternalForm());
 
-        setTitle("Gluon Desktop Application");
+        setTitle("Apolo");
 
         getParticle().buildMenu("File -> [exit]", "Help -> [about]");
         
