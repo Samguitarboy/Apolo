@@ -12,12 +12,13 @@ public class Apolo extends ParticleApplication {
 
     @Override
     public void postInit(Scene scene) {
+        
         scene.getStylesheets().add(Apolo.class.getResource("style.css").toExternalForm());
-
+        
         setTitle("Apolo");
 
-        getParticle().buildMenu("File -> [exit]", "Help -> [about]");
+        //getParticle().buildMenu("File -> [exit]", "Help -> [about]");
         
-        getParticle().getToolBarActions().addAll(actions("---", "about", "exit"));
+        //getParticle().getToolBarActions().addAll(actions("---", "about", "exit"));
     }
 }
