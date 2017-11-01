@@ -5,20 +5,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/D:/NetBeans8.2/NetBeansProjects/Apolo/src/main/java/com/apolo/actions/MenuActions.java</file>
-        <file>file:/D:/NetBeans8.2/NetBeansProjects/Apolo/src/main/java/com/apolo/Apolo.java</file>
-        <file>file:/D:/NetBeans8.2/NetBeansProjects/Apolo/src/main/java/com/apolo/controllers/ChooseLevelController.java</file>
-      </group>
-    </open-files>
-    <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group>
         <file>file:/D:/JAVA_project/Apolo/src/main/java/com/apolo/Apolo.java</file>
         <file>file:/D:/JAVA_project/Apolo/src/main/java/com/apolo/controllers/MainController.java</file>
+        <file>file:/D:/JAVA_project/Apolo/src/main/java/com/apolo/views/MainView.java</file>
         <file>file:/D:/JAVA_project/Apolo/src/main/resources/com/apolo/views/main.properties</file>
+        <file>file:/D:/JAVA_project/Apolo/build.gradle</file>
+        <file>file:/D:/JAVA_project/Apolo/src/main/resources/com/apolo/views/main.fxml</file>
         <file>file:/D:/JAVA_project/Apolo/src/main/resources/bundles/chooselevel.properties</file>
         <file>file:/D:/JAVA_project/Apolo/src/main/java/com/apolo/actions/MenuActions.java</file>
       </group>
     </open-files>
+    <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
   </auxiliary>
 </gradle-project-properties>

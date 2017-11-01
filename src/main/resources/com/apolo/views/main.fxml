@@ -51,7 +51,39 @@
                     <children>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="start" mnemonicParsing="false" text="%button0.text" />
+                                <Button fx:id="start" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0">
+                           <graphic>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" spacing="10.0">
+                                 <children>
+                                    <Label text="%start.text" />
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../start.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </graphic></Button>
+                            </children>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding>
+                        </HBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="credit" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0">
+                           <graphic>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="142.0" spacing="10.0">
+                                 <children>
+                                    <Label contentDisplay="RIGHT" text="%credit.text" />
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../credit_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </graphic></Button>
                             </children>
                             <padding>
                                 <Insets right="30.0" />
@@ -59,15 +91,19 @@
                         </HBox>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="credit" mnemonicParsing="false" text="%button1.text" />
-                            </children>
-                            <padding>
-                                <Insets right="30.0" />
-                            </padding>
-                        </HBox>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="200.0">
-                            <children>
-                                <Button fx:id="about" mnemonicParsing="false" text="%button2.text" />
+                                <Button fx:id="about" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0">
+                           <graphic>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="142.0" spacing="10.0">
+                                 <children>
+                                    <Label contentDisplay="RIGHT" text="%about.text" />
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../about.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </graphic></Button>
                             </children>
                             <padding>
                                 <Insets right="30.0" />

@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javax.inject.Inject;
 import org.controlsfx.control.action.Action;
-import org.controlsfx.control.action.ActionMap;
 import org.controlsfx.control.action.ActionProxy;
 
 public class ChooseLevelController {
@@ -17,7 +16,7 @@ public class ChooseLevelController {
     @Inject private ViewManager viewManager;
 
     @FXML
-    private Button button;
+    private Button play;
     
     @FXML
     private ResourceBundle resources;
@@ -25,19 +24,17 @@ public class ChooseLevelController {
     private Action actionHome;
     
     public void initialize() {
-        ActionMap.register(this);
-        actionHome =  ActionMap.action("goHome");
         
-        button.setText(resources.getString("button.text"));
-        button.setOnAction(e -> viewManager.switchView("main"));
+        play.setText(resources.getString("button.text"));
+        play.setOnAction(e -> viewManager.switchView("enjoyplatform"));
     }
     
     public void postInit() {
-        app.getParticle().getToolBarActions().add(0, actionHome);
+
     }
     
     public void dispose() {
-        app.getParticle().getToolBarActions().remove(actionHome);
+
     }
     
     @ActionProxy(text = "Back")
