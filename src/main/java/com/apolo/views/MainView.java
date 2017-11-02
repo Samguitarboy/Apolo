@@ -13,7 +13,6 @@ public class MainView extends FXMLView {
     
     @Override
     public void start() {
-
         ((MainController) getController()).postInit();
         
     }

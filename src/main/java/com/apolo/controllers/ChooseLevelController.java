@@ -16,7 +16,7 @@ public class ChooseLevelController {
     @Inject private ViewManager viewManager;
 
     @FXML
-    private Button play;
+    private Button easy,normal,hard;
     
     @FXML
     private ResourceBundle resources;
@@ -25,8 +25,12 @@ public class ChooseLevelController {
     
     public void initialize() {
         
-        play.setText(resources.getString("button.text"));
-        play.setOnAction(e -> viewManager.switchView("enjoyplatform"));
+        easy.setText(resources.getString("easy.text"));
+        easy.setOnAction(e -> viewManager.switchView("enjoyplatform"));
+        normal.setText(resources.getString("normal.text"));
+        normal.setOnAction(e -> viewManager.switchView("enjoyplatform"));
+        hard.setText(resources.getString("hard.text"));
+        hard.setOnAction(e -> viewManager.switchView("enjoyplatform"));
     }
     
     public void postInit() {
