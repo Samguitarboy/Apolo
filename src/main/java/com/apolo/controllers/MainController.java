@@ -3,16 +3,12 @@ package com.apolo.controllers;
 import com.gluonhq.particle.application.ParticleApplication;
 import com.gluonhq.particle.state.StateManager;
 import com.gluonhq.particle.view.ViewManager;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.inject.Inject;
-import org.controlsfx.control.action.Action;
-import org.controlsfx.control.action.ActionProxy;
 
 public class MainController {
 
@@ -22,16 +18,9 @@ public class MainController {
     @Inject
     private ViewManager viewManager;
 
-    @Inject
-    private StateManager stateManager;
-
-    private boolean first = true;
 
     @FXML
-    private Label label;
-
-    @FXML
-    private Button start,about;
+    private Button start, about;
 
     public void initialize() {
         start.setOnAction(e -> viewManager.switchView("chooselevel"));
@@ -39,6 +28,7 @@ public class MainController {
     }
 
     public void postInit() {
+
     }
 
     public void dispose() {
