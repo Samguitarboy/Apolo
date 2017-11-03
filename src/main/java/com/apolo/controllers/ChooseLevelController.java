@@ -7,42 +7,44 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javax.inject.Inject;
 import org.controlsfx.control.action.Action;
-import org.controlsfx.control.action.ActionMap;
 import org.controlsfx.control.action.ActionProxy;
 
 public class ChooseLevelController {
 
-    @Inject ParticleApplication app;
-    
-    @Inject private ViewManager viewManager;
+    @Inject
+    ParticleApplication app;
+
+    @Inject
+    private ViewManager viewManager;
 
     @FXML
-    private Button button;
-    
+    private Button easy, normal, hard;
+
     @FXML
     private ResourceBundle resources;
-    
+
     private Action actionHome;
-    
+
     public void initialize() {
-        ActionMap.register(this);
-        actionHome =  ActionMap.action("goHome");
-        
-        button.setText(resources.getString("button.text"));
-        button.setOnAction(e -> viewManager.switchView("main"));
+        easy.setText(resources.getString("easy.text"));
+        easy.setOnAction(e -> viewManager.switchView("enjoyplatform"));
+        normal.setText(resources.getString("normal.text"));
+        normal.setOnAction(e -> viewManager.switchView("youtubedownloader"));
+        hard.setText(resources.getString("hard.text"));
+        hard.setOnAction(e -> viewManager.switchView("enjoyplatform"));
     }
-    
+
     public void postInit() {
-        app.getParticle().getToolBarActions().add(0, actionHome);
+
     }
-    
+
     public void dispose() {
-        app.getParticle().getToolBarActions().remove(actionHome);
+
     }
-    
+
     @ActionProxy(text = "Back")
     private void goHome() {
         viewManager.switchView("main");
     }
-    
+
 }
