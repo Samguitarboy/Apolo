@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javax.inject.Inject;
-import org.controlsfx.control.action.Action;
 import org.controlsfx.control.action.ActionProxy;
 
 public class ChooseLevelController {
@@ -23,19 +22,16 @@ public class ChooseLevelController {
     @FXML
     private ResourceBundle resources;
 
-    private Action actionHome;
-
     public void initialize() {
         easy.setText(resources.getString("easy.text"));
-        easy.setOnAction(e -> viewManager.switchView("enjoyplatform"));
         normal.setText(resources.getString("normal.text"));
-        normal.setOnAction(e -> viewManager.switchView("youtubedownloader"));
         hard.setText(resources.getString("hard.text"));
-        hard.setOnAction(e -> viewManager.switchView("enjoyplatform"));
     }
 
     public void postInit() {
-
+        easy.setOnAction(e -> viewManager.switchView("enjoyplatform"));
+        normal.setOnAction(e -> viewManager.switchView("youtubedownloader"));
+        hard.setOnAction(e -> viewManager.switchView("gamepage"));
     }
 
     public void dispose() {
