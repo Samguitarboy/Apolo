@@ -1,6 +1,7 @@
 /*https://github.com/Delthas/JavaMP3 */
 package com.apolo.actions;
 
+
 import fr.delthas.javamp3.Sound;
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 public class mp3_decoder {
 
     final private String path_ofsong = "\\songlist";
@@ -16,7 +18,7 @@ public class mp3_decoder {
     public mp3_decoder() {
     }
 
-    public void mp3_decoder_to_Frequency(String name) {
+    public void mp3_decoder_to_Frequency(String name)  {
         Path path = Paths.get(path_ofsong, name + ".mp3");
 
         System.out.println(path + "inginging");

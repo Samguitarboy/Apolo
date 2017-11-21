@@ -9,7 +9,7 @@ public class DBconnection {
 
     private static Properties props;
 
-    private static void loadProperties() {
+    public static void loadProperties() {
         props = new Properties();
         try {
             props.load(new FileInputStream("src/main/resources/bundles/db.properties"));
@@ -20,7 +20,7 @@ public class DBconnection {
         }
     }
 
-    private static String getProperties(String key) {
+    public static String getProperties(String key) {
         return props.getProperty(key);
     }
 }

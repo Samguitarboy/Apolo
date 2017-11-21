@@ -1,7 +1,6 @@
 /*http://www.c-sharpcorner.com/blogs/youtube-downloader-in-java*/
 package com.apolo.controllers;
 
-import com.apolo.actions.mp3_decoder;
 import com.gluonhq.particle.application.ParticleApplication;
 import com.gluonhq.particle.view.ViewManager;
 import javafx.fxml.FXML;
@@ -24,6 +23,8 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import javafx.scene.control.ProgressBar;
 import javax.swing.JOptionPane;
+import com.apolo.actions.Jipes;
+import java.net.URLConnection;
 
 public class Youtube_url_inputController {
 
@@ -47,10 +48,11 @@ public class Youtube_url_inputController {
     private String songtitle = "";
 
     public void initialize() {
-        youtubeUrlField.setText("");
     }
 
     public void postInit() {
+        youtubeUrlField.setText("");
+        downloadBtn.setDisable(false);
         main.setOnAction(e -> viewManager.switchView("main"));
 
         /*Event is triggered when we press the download button*/
@@ -64,7 +66,7 @@ public class Youtube_url_inputController {
                 //System.setProperty("http.agent", "Chrome");
                 downloadURL = new URL(getURLS(sendHTTPRequest.getValue()));
                 System.out.println(sendHTTPRequest.getValue() + "~~~~~~");
-                //pbar.progressProperty().unbind();
+                pbar.progressProperty().unbind();
                 pbar.setProgress(0);
                 pbar.progressProperty().bind(VideoDownload.progressProperty());
                 pbar.setVisible(true);
@@ -199,9 +201,9 @@ public class Youtube_url_inputController {
                     long length;
                     boolean completed = false;
                     int count = 0;//youtubeUrlField.getText().concat(".mp3"))
-                    HttpURLConnection httpcon = (HttpURLConnection) downloadURL.openConnection();
-                    httpcon.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-                    try (BufferedInputStream bis = new BufferedInputStream(httpcon.getInputStream()); FileOutputStream fos = new FileOutputStream("songlist\\" + songtitle + ".mp3")) {
+                    URLConnection conn = (URLConnection) downloadURL.openConnection();
+                    conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+                    try (BufferedInputStream bis = new BufferedInputStream(conn.getInputStream()); FileOutputStream fos = new FileOutputStream("songlist\\" + songtitle + ".mp3")) {
                         length = downloadURL.openConnection().getContentLength();
                         int i = 0;
                         final byte[] data = new byte[1024];
@@ -211,12 +213,13 @@ public class Youtube_url_inputController {
                             updateProgress(i, length);
                         }
                         completed = true;
-                        /*System.out.println("start");
-                        mp3_decoder mp3 = new mp3_decoder();
-                        mp3.mp3_decoder_to_Frequency(songtitle);
-                        System.out.println("end");*/
+                        System.out.println("start");
+                        Jipes a = new Jipes();
+                        a.transform("songlist\\" + songtitle + ".mp3");
+                        System.out.println("end");
                     } catch (IOException ex) {
                         System.out.println("VideoDownload~" + ex);
+                        downloadBtn.setDisable(true);
                     }
                     return completed;
                 }
@@ -251,7 +254,7 @@ public class Youtube_url_inputController {
             /*System.out.println(guess);
             System.out.println(temp2[guess]);*/
 
-            /*String show_split_line = "";
+ /*String show_split_line = "";
             for (String s : temp2) {
                 show_split_line = show_split_line + "[" + s + "]\n";
             }
