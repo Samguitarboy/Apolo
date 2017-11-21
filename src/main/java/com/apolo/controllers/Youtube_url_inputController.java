@@ -172,7 +172,7 @@ public class Youtube_url_inputController {
                                 res.append(response);
                             }
                         }
-                        songtitle = getVideoTitle(res.toString()).replace("|", "").replace("?", "");
+                        songtitle = getVideoTitle(res.toString()).replace("|", "").replace("?", "").replace("\\", "").replace("/", "");
                         System.out.println(songtitle);
 
                         refinedres.append(URLDecoder.decode(URLDecoder.decode(res.toString(), "UTF-8"), "UTF-8"));
