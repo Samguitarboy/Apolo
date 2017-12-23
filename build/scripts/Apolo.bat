@@ -69,7 +69,7 @@ set CMD_LINE_ARGS=%$
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\Apolo.jar;%APP_HOME%\lib\JTransforms-3.1-with-dependencies.jar;%APP_HOME%\lib\particle-1.1.3.jar;%APP_HOME%\lib\sqlite-jdbc-3.8.11.2.jar;%APP_HOME%\lib\javax.inject-1.jar;%APP_HOME%\lib\controlsfx-8.40.12.jar;%APP_HOME%\lib\annotation-detector-3.0.4.jar
+set CLASSPATH=%APP_HOME%\lib\Apolo.jar;%APP_HOME%\lib\JTransforms-3.1-with-dependencies.jar;%APP_HOME%\lib\mysql-connector-java-5.1.44-bin.jar;%APP_HOME%\lib\jipes-0.9.14.jar;%APP_HOME%\lib\jave-1.0.2.jar;%APP_HOME%\lib\json-20171018.jar;%APP_HOME%\lib\particle-1.1.3.jar;%APP_HOME%\lib\sqlite-jdbc-3.8.11.2.jar;%APP_HOME%\lib\javamp3-1.0.1.jar;%APP_HOME%\lib\javax.inject-1.jar;%APP_HOME%\lib\controlsfx-8.40.12.jar;%APP_HOME%\lib\annotation-detector-3.0.4.jar
 
 @rem Execute Apolo
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %APOLO_OPTS%  -classpath "%CLASSPATH%" com.apolo.Apolo %CMD_LINE_ARGS%

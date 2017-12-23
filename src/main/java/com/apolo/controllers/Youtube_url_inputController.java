@@ -1,3 +1,4 @@
+/*http://www.c-sharpcorner.com/blogs/youtube-downloader-in-java*/
 package com.apolo.controllers;
 
 import com.gluonhq.particle.application.ParticleApplication;
@@ -22,6 +23,18 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import javafx.scene.control.ProgressBar;
 import javax.swing.JOptionPane;
+import com.apolo.actions.Jipes;
+import com.apolo.config;
+import com.mysql.jdbc.Connection;
+import java.io.File;
+import java.net.URLConnection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Youtube_url_inputController {
 
@@ -45,12 +58,19 @@ public class Youtube_url_inputController {
     private String songtitle = "";
 
     public void initialize() {
-        main.setOnAction(e -> viewManager.switchView("main"));
-
     }
 
     public void postInit() {
         youtubeUrlField.setText("");
+        downloadBtn.setDisable(false);
+        String Path = System.getProperty("user.dir") + "/src/main/resources/Tentacle_Flop_Down.mp3";
+        Media hit = new Media(new File(Path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        main.setOnAction(e -> {
+            mediaPlayer.play();
+            viewManager.switchView("main");
+        });
+
         /*Event is triggered when we press the download button*/
         downloadBtn.setOnAction(e -> {
             sendHTTPRequest.restart();
@@ -59,8 +79,9 @@ public class Youtube_url_inputController {
         /*Event is triggered when the sendHTTP request service completed successfully*/
         sendHTTPRequest.setOnSucceeded((WorkerStateEvent we) -> {
             try {
+                //System.setProperty("http.agent", "Chrome");
                 downloadURL = new URL(getURLS(sendHTTPRequest.getValue()));
-                System.out.println(downloadURL);
+                System.out.println(sendHTTPRequest.getValue() + "~~~~~~");
                 pbar.progressProperty().unbind();
                 pbar.setProgress(0);
                 pbar.progressProperty().bind(VideoDownload.progressProperty());
@@ -70,8 +91,9 @@ public class Youtube_url_inputController {
                 VideoDownload.restart();
 
             } catch (MalformedURLException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid Ur", "Message from Youtube Downloader", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid Url or Copyright problem", "Message from Youtube Downloader", JOptionPane.ERROR_MESSAGE);
                 System.out.println("GOD!!!!");
+                downloadBtn.setDisable(true);
             }
         });
 
@@ -84,13 +106,70 @@ public class Youtube_url_inputController {
                 viewManager.switchView("main");
             } else {
                 JOptionPane.showMessageDialog(null, "Download Failed", "Message from Youtube Downloader", JOptionPane.ERROR_MESSAGE);
+                downloadBtn.setDisable(true);
             }
             pbar.setVisible(false);
         });
+
     }
 
     public void dispose() {
+        //dbcn();
+    }
 
+    /*
+    private void dbcn() {
+        DBconnection db = new DBconnection();
+        db.loadProperties();
+        String driver = db.getProperties("driver");
+        String url = db.getProperties("url");
+        String user = db.getProperties("username");
+        String password = db.getProperties("password");
+        try {
+            Class.forName(driver);
+            Connection conn
+                    = DriverManager.getConnection(url,
+                            user, password);
+            if (conn != null && !conn.isClosed()) {
+                System.out.println("Connected !");
+                conn.close();
+            }
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Can't find driver !");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+     */
+    private void songtoDB(String URL) throws SQLException {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        config con = new config();
+        conn = (Connection) DriverManager.getConnection("jdbc:mysql://"+con.getUrlstr()+"/"+con.getDBName()+"?user="+con.getUserstr()+"&password="+con.getPw());
+        System.out.println("Database Connection !");
+        stmt = conn.createStatement();
+        System.out.println(URL);
+        String insertsong = "insert into Songlist values(N'"+songtitle+"',null,CURRENT_DATE,'"+URL+"')";
+        stmt.executeUpdate(insertsong);
+        String SQL = "select * from Songlist";
+        rs = stmt.executeQuery(SQL);
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int numCol = metaData.getColumnCount();
+        while (rs.next()) {
+            for (int i = 1; i <= numCol; i++) {
+                System.out.print("\t\t" + rs.getObject(i));
+            }
+            System.out.println();
+        }
+        System.out.println();
+        rs.close();
+        stmt.close();
+        conn.close();
     }
 
     private String getVideoTitle(String infoData) throws UnsupportedEncodingException {
@@ -127,21 +206,35 @@ public class Youtube_url_inputController {
                     StringBuilder refinedres = new StringBuilder();
                     try {
                         URL url = new URL("https://www.youtube.com/get_video_info?&video_id=" + getVideoID(youtubeUrlField.getText()));
-                        System.out.print(url.toString() + " ");
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setRequestMethod("GET");
-                        System.out.println(conn.getResponseMessage());
+                        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+                        System.out.println(url.toString() + " ~~~~sendHTTPRequest");
+
                         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        while ((response = in.readLine()) != null) {
-                            res.append(response);
+                        if (in.ready()) {
+                            while ((response = in.readLine()) != null) {
+                                //System.out.println("readLine() can read~");
+                                res.append(response);
+                            }
                         }
-                        songtitle = getVideoTitle(res.toString());
+                        songtitle = getVideoTitle(res.toString()).replace("|", "").replace("?", "").replace("\\", "").replace("/", "");
                         System.out.println(songtitle);
+
+                        songtoDB(getVideoID(youtubeUrlField.getText()));
+
                         refinedres.append(URLDecoder.decode(URLDecoder.decode(res.toString(), "UTF-8"), "UTF-8"));
+                        //System.out.println(refinedres.toString());
                         in.close();
                         return refinedres;
                     } catch (MalformedURLException ex) {
+                        System.out.println("sendHTTPRequest~" + ex);
+                        downloadBtn.setDisable(true);
                     } catch (IOException ex) {
+                        System.out.println("sendHTTPRequest~" + ex);
+                        downloadBtn.setDisable(true);
+                    } catch (SQLException ex) {
+                        System.out.println("sendHTTPRequest~" + ex);
+                        downloadBtn.setDisable(true);
                     }
                     return null;
                 }
@@ -158,7 +251,9 @@ public class Youtube_url_inputController {
                     long length;
                     boolean completed = false;
                     int count = 0;//youtubeUrlField.getText().concat(".mp3"))
-                    try (BufferedInputStream bis = new BufferedInputStream(downloadURL.openStream()); FileOutputStream fos = new FileOutputStream("songlist/"+songtitle+".mp3")) {
+                    URLConnection conn = (URLConnection) downloadURL.openConnection();
+                    conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+                    try (BufferedInputStream bis = new BufferedInputStream(conn.getInputStream()); FileOutputStream fos = new FileOutputStream("songlist\\" + songtitle + ".mp3")) {
                         length = downloadURL.openConnection().getContentLength();
                         int i = 0;
                         final byte[] data = new byte[1024];
@@ -168,7 +263,13 @@ public class Youtube_url_inputController {
                             updateProgress(i, length);
                         }
                         completed = true;
+                        System.out.println("start");
+                        Jipes a = new Jipes();
+                        a.transform("songlist\\" + songtitle + ".mp3");
+                        System.out.println("end");
                     } catch (IOException ex) {
+                        System.out.println("VideoDownload~" + ex);
+                        downloadBtn.setDisable(true);
                     }
                     return completed;
                 }
@@ -179,33 +280,45 @@ public class Youtube_url_inputController {
     /*This methid receives refined response as a paramter and extract the url from the 
     response which will be used to download the video from the youtube*/
     private String getURLS(StringBuilder response) {
-        StringBuilder temp1 = new StringBuilder();
-        String[] temp2, temp3, temp4;
+
+        StringBuilder temp1 = new StringBuilder("");
+        String[] temp2, temp3;
+
+        int guess = 0;
         try {
             int index = response.indexOf("url_encoded_fmt_stream_map");
-        
+
             for (int i = index; i < response.length(); i++) {
                 temp1.append(response.charAt(i));
             }
-            temp2 = temp1.toString().split("&url=");
-            if (temp2.length > 0) {
-                temp3 = temp2[1].split(";");
-                if (temp3.length > 0) {
-                    temp4 = temp3[0].split(",");
-                    if (temp4.length > 0) {
-                        return temp4[0];
-                    } else {
-                        return temp3[0];
-                    }
-                } else {
-                    return temp2[1];
+            //System.out.println(response.length());
+            System.out.println("YYYYYYYYY");
+            temp2 = (temp1.toString()).split("url=");
+            for (int i = temp2.length - 1; i >= 0; i--) {
+                guess = temp2[i].indexOf("video/3gpp");
+                if (guess != -1) {
+                    guess = i;
+                    break;
                 }
             }
+            /*System.out.println(guess);
+            System.out.println(temp2[guess]);*/
+
+ /*String show_split_line = "";
+            for (String s : temp2) {
+                show_split_line = show_split_line + "[" + s + "]\n";
+            }
+            System.out.println(show_split_line);*/
+            temp3 = temp2[guess].split(";");
+            System.out.println(temp3[0]);
+            return temp3[0];
         } catch (Exception e) {
             Alert msg = new Alert(Alert.AlertType.INFORMATION);
             msg.setTitle("Message form youtube Downloader");
             msg.setContentText("Error in downloading");
             msg.showAndWait();
+            System.out.println("getURLS~" + e);
+            downloadBtn.setDisable(true);
         }
         return null;
     }
