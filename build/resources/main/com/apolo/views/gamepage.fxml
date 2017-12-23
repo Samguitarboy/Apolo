@@ -72,8 +72,9 @@
       <Line endX="100.0" opacity="0.5" rotate="90.0" scaleX="4.35" startX="-100.0" strokeWidth="5.0" StackPane.alignment="CENTER_RIGHT">
          <StackPane.margin>
             <Insets right="50.0" />
-         </StackPane.margin></Line>
-      <Circle radius="45.0" stroke="#0c14b5" strokeType="INSIDE">
+         </StackPane.margin>
+      </Line>
+      <Circle radius="45.0" stroke="#0c14b5" strokeType="INSIDE" StackPane.alignment="CENTER_LEFT">
          <fill>
             <RadialGradient centerX="0.5113636363636364" centerY="0.5" focusAngle="75.96" focusDistance="0.04878048780487809" radius="0.4390243902439024">
                <stops>
@@ -82,6 +83,9 @@
                </stops>
             </RadialGradient>
          </fill>
+         <StackPane.margin>
+            <Insets left="107.0" />
+         </StackPane.margin>
       </Circle>
       <Circle radius="45.0" stroke="#0c14b5" strokeType="INSIDE" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
@@ -96,5 +100,29 @@
             </RadialGradient>
          </fill>
       </Circle>
+      <ImageView fitHeight="110.0" fitWidth="79.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+         <image>
+            <Image url="@../../../left.png" />
+         </image>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="115.0" />
+         </StackPane.margin>
+      </ImageView>
+      <ImageView fitHeight="110.0" fitWidth="79.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
+         <image>
+            <Image url="@../../../up.png" />
+         </image>
+         <StackPane.margin>
+            <Insets bottom="50.0" />
+         </StackPane.margin>
+      </ImageView>
+      <ImageView fitHeight="110.0" fitWidth="79.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
+         <image>
+            <Image url="@../../../right.png" />
+         </image>
+         <StackPane.margin>
+            <Insets bottom="50.0" right="115.0" />
+         </StackPane.margin>
+      </ImageView>
    </children>
 </StackPane>

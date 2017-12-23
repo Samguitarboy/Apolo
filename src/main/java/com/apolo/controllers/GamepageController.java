@@ -4,10 +4,12 @@ import com.apolo.MySQLConnector;
 import com.apolo.config;
 import javafx.fxml.FXML;
 import com.gluonhq.particle.view.ViewManager;
+import java.util.concurrent.TimeUnit;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 import javax.inject.Inject;
 
 public class GamepageController {
@@ -20,12 +22,10 @@ public class GamepageController {
 
     @FXML
     private Accordion accordion;
-
-
-    public void initialize() {
+    public void initialize(){
         // TODO
-    }
 
+    }
     public void postInit() {
         main1.setOnAction(e -> viewManager.switchView("main"));
 
@@ -34,4 +34,5 @@ public class GamepageController {
     public void dispose() {
 
     }
+    
 }
