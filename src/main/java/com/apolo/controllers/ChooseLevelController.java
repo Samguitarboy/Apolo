@@ -37,7 +37,7 @@ public class ChooseLevelController {
         MediaPlayer mediaPlayer = new MediaPlayer(hit);
         easy.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("enjoyplatform");});
         normal.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("youtubedownloader");});
-        hard.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("gamepage");});
+        hard.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("songlist");});
     }
 
     public void dispose() {

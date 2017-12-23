@@ -17,7 +17,7 @@ public class MainController {
     private ViewManager viewManager;
 
     @FXML
-    private Button start, about ,download ,credit;
+    private Button start, about ,download_main ,credit;
 
     public void initialize() {
 
@@ -30,7 +30,7 @@ public class MainController {
         start.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("gamepage");});
         credit.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("chooselevel");});
         about.setOnAction(e -> about());
-        download.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("enjoyplatform");});
+        download_main.setOnAction(e -> {mediaPlayer.play();viewManager.switchView("enjoyplatform");});
     }
     
     public void dispose() {
