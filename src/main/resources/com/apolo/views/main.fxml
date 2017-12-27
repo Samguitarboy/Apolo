@@ -15,14 +15,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apolo.controllers.MainController">
+<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apolo.controllers.MainController">
     <children>
-        <ImageView fitHeight="673.0" fitWidth="958.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="913.0" fitWidth="1266.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../cover.jpg" />
             </image>
         </ImageView>
-        <VBox alignment="BASELINE_RIGHT" prefHeight="200.0" prefWidth="100.0">
+        <VBox alignment="BASELINE_RIGHT" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="TOP_CENTER">
             <children>
                 <Label fx:id="label" alignment="CENTER_RIGHT" text="%label.text" textAlignment="CENTER">
                     <font>
@@ -145,6 +145,9 @@
             <padding>
                 <Insets right="35.0" top="30.0" />
             </padding>
+         <StackPane.margin>
+            <Insets top="140.0" />
+         </StackPane.margin>
         </VBox>
     </children>
 </StackPane>

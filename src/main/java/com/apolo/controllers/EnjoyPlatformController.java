@@ -34,13 +34,13 @@ public class EnjoyPlatformController {
     private ViewManager viewManager;
 
     @FXML
-    private Button button, btn, download;
+    private Button backtomain, download;
 
     @FXML
     private ResourceBundle resources;
 
     @FXML
-    private TextField website,url;
+    private TextField website, url;
 
     @FXML
     private WebView web;
@@ -48,20 +48,18 @@ public class EnjoyPlatformController {
     private WebEngine engine;
 
     public void initialize() {
-        // TODO
-        button.setText(resources.getString("button.text"));
-
     }
 
     public void postInit() {
-
+        engine = web.getEngine();
+        engine.load("https://www.youtube.com");
         website.setText("");
-        button.setOnAction(e -> {
+        backtomain.setOnAction(e -> {
             //engine.reload();
             viewManager.switchView("main");
         });
 
-        btn.setOnAction(e -> {
+        download.setOnAction(e -> {
             String[] temp;
             temp = website.getText().split("v=");
 
@@ -100,21 +98,15 @@ public class EnjoyPlatformController {
             } catch (IOException ioex) {
                 System.out.println(ioex);
             }
-        });
 
-        download.setOnAction(e -> {
             System.out.println(dloadurl);
-            engine = web.getEngine();
-            engine.load("https://www.google.com");
-            url.setText("https:"+dloadurl);
+            url.setText("https:" + dloadurl);
         });
-
     }
 
     public void dispose() {
 
     }
-   
 
     public String dloadstring(String jsonresult) {
         JSONObject obj = new JSONObject(jsonresult);
