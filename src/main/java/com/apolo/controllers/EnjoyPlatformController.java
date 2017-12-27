@@ -61,15 +61,15 @@ public class EnjoyPlatformController {
 
         download.setOnAction(e -> {
             String[] temp;
-            temp = website.getText().split("v=");
-
+            temp = url.getText().split("www.");
+            engine.load("https://www.conv"+temp[1]);
             /*engine.loadContent("<iframe class=\"button-api-frame\" src=\"https://downloadmp.org/@api/button/videos/" + temp[1] + "\" width=\"100%\" height=\"100%\" allowtransparency=\"true\" scrolling=\"no\" style=\"border:none\"></iframe>\n"
                     + "\n"
                     + "<!-- Optional script that automatically makes iframe content responsive. -->\n"
                     + "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.min.js\"></script>\n"
                     + "<script>iFrameResize({}, '.button-api-frame');</script>");
             System.out.println(temp[1]);*/
-            try {
+ /* try {
                 URL url = new URL("https://downloadmp.org/@api/json/videos/" + temp[1]);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
@@ -100,9 +100,9 @@ public class EnjoyPlatformController {
             }
 
             System.out.println(dloadurl);
-            url.setText("https:" + dloadurl);
+            url.setText("https:" + dloadurl);*/
         });
-    }
+        }
 
     public void dispose() {
 
@@ -139,6 +139,7 @@ public class EnjoyPlatformController {
 
             config con = new config();
             conn = (Connection) DriverManager.getConnection("jdbc:mysql://" + con.getUrlstr() + "/" + con.getDBName() + "?user=" + con.getUserstr() + "&password=" + con.getPw());
+            System.out.println(conn);
             System.out.println("Database Connection !");
             stmt = conn.createStatement();
             System.out.println(videoid);
